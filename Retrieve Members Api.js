@@ -29,7 +29,6 @@ async function fetchMembers(url){
 
 function LoadSettings() {
 	var globalContext = Xrm.Utility.getGlobalContext ? Xrm.Utility.getGlobalContext() : Xrm.Page.context;
-
 	var serverUrl = globalContext.getClientUrl();
 	var retrieveReq = new XMLHttpRequest();
 	retrieveReq.open('GET', serverUrl + '/webresources/cdi_settings', false);
@@ -38,7 +37,6 @@ function LoadSettings() {
 			if (retrieveReq.status === 200) {
 				//Success
 				var xmlDoc = CreateXmlDoc(retrieveReq.responseText);
-
 				accountKey = SelectNodeValue(xmlDoc, 'accountkey');
 			}
 		}
@@ -48,8 +46,6 @@ function LoadSettings() {
 
 function getSegmentId() {
 	var value = Xrm.Page.data.entity.getId();
-
 	var final_value = value.slice(value.indexOf('{') + 1, value.indexOf('}'));
-
 	return final_value.toLowerCase();
 }
