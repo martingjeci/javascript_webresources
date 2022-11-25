@@ -10,8 +10,11 @@ async function retrieveTotalMembers(executionContext)
 	var segmentId = getSegmentId();
     var url = `https://dev-eus-segmentation-api.azurewebsites.net/segment/totalrecords/${accountKey}/${segmentId}`;
     var getMembers = await fetchMembers(url);
-    var totalMembers = getMembers.totalRecords;
-    formContext.getAttribute("cdi_members_count").setValue(totalMembers);
+	if (getMembers !== undefined){
+		var totalMembers = getMembers.totalRecords;
+    	formContext.getAttribute("cdi_members_count").setValue(totalMembers);
+	}
+    
 }
 
 async function fetchMembers(url){
